@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRoles {
+  ADMIN
+  USER
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  username String
+  emailAddress String @unique
+  contactNumber Int?
+  role UserRoles @default(USER)
+  isPremiumMember Boolean @default(false)
+  skills String[] @default([])
+  hasExperience Boolean @default(false)
+  totalMonthsOfExperience Int?
+  prevJobTitle String?
+  jobsTargetting String[] @default([]) 
+  jobsAppliedTo JobInformation[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model JobInformation {
+  jobId Int @id @default(autoincrement())
+  title String 
+  description String
+  applyUrl String
+  usersApplied User[]
+  createdAt DateTime @default(now())
+}
