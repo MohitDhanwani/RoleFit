@@ -28,7 +28,7 @@ export default function Hero() {
   ];
 
   return (
-    <div className="flex gap-8 justify-evenly items-center bg-[#f4f7fd] pt-16 pb-16 p-20 h-full">
+    <div className="flex gap-8 justify-evenly items-center bg-[#f4f7fd] pt-18 pb-18 p-20 h-full">
 
       <div className="flex flex-col gap-6 items-start justify-center max-w-xl">
         <div className="flex justify-center items-center rounded-full bg-white/60 gap-2 border border-indigo-200/50 text-indigo-700 font-semibold px-4 py-2 pb-4">
@@ -59,7 +59,9 @@ export default function Hero() {
           </Button>
         </div>
 
-        <div className="flex w-full justify-evenly pt-6">
+        <div className="w-full bg-slate-200 h-0.5 mt-2"></div>
+
+        <div className="flex w-full justify-evenly pt-4">
           {AboutPlatform.map((items, index) => (
             <div key={index} className="flex flex-col justify-center items-center">
               <span className="p-2 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-lg">
