@@ -100,7 +100,10 @@ export default function Hero() {
                   <span className="font-semibold text-emerald-600">9/10</span>
                 </div>
 
-                <div className="bg-gradient-to-r from-emerald-400 to-emerald-600 h-2 rounded-full w-[100%]"></div>
+                <div className="w-full border border-s-slate-200 rounded-full">
+                  <div className="bg-gradient-to-r from-emerald-400 to-emerald-600 h-2 rounded-full w-[90%]">
+                  </div>
+                </div>
               </div>
 
               <div className="flex gap-2">
