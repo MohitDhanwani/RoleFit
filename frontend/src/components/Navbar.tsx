@@ -1,6 +1,7 @@
 import { Zap } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 interface NavigationItemsProps {
   name: string;
@@ -45,8 +46,14 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="flex gap-4 items-center">
-          <span>Sign In</span>
+        <div className="flex gap-5 items-center">
+          <SignedOut>
+            <SignInButton forceRedirectUrl={"/profile"}/>
+          </SignedOut>
+
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
           <Button variant={"primary"}>Get Started</Button>
         </div>
       </div>
