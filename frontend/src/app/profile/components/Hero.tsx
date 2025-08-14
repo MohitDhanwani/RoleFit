@@ -1,5 +1,8 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Upload, Search, Percent, LucideIcon, User, Pointer } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import UserProfile from "./UserProfile";
 
 interface UserCycle {
   icon: LucideIcon;
@@ -8,33 +11,22 @@ interface UserCycle {
 
 export default function Hero() {
   const FeatureCycle: UserCycle[] = [
-    {
-      icon: Upload,
-      heading: "Upload Profile",
-    },
-    {
-      icon: Search,
-      heading: "We Search",
-    },
-    {
-      icon: Percent,
-      heading: "Get Matched",
-    },
-    {
-      icon: Pointer,
-      heading: "Automate & Apply",
-    },
+    { icon: Upload, heading: "Upload Profile" },
+    { icon: Search, heading: "We Search" },
+    { icon: Percent, heading: "Get Matched" },
+    { icon: Pointer, heading: "Automate & Apply" },
   ];
 
   return (
-    <div className="flex flex-col gap-10 justify-center items-center bg-[#f4f7fd] pt-18 pb-18 p-20 min-h-screen">
+    <div className="flex flex-col gap-10 justify-center items-center bg-[#f4f7fd] pt-18 pb-18 p-20 h-screen">
+      {/* Header Section */}
       <div className="flex flex-col gap-8 items-center justify-center max-w-4xl">
         <div className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-purple-900 bg-clip-text text-transparent">
           Tell Us About Yourself
         </div>
 
         <div>
-          <span className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-xl">
+          <span className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-xl text-center">
             We'll analyze your profile and connect you with opportunities that align with your career goals.
           </span>
         </div>
@@ -47,21 +39,29 @@ export default function Hero() {
               <span className="p-2 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-lg">
                 <items.icon color="purple" />
               </span>
-                <h1 className="text-xl font-bold text-slate-900 pt-2">{items.heading}</h1> 
+              <h1 className="text-xl font-bold text-slate-900 pt-2">{items.heading}</h1>
             </div>
           ))}
         </div>
       </div>
 
-
-      <div className="w-full max-w-xl flex justify-evenly pt-10">
-        <Button variant={"primary"} className="p-6 px-10 w-1/3">
-            <User/>
-            My Profile
+      <div className="w-full max-w-4xl flex justify-evenly pt-10">
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant={"primary"} className="p-6 px-10 w-1/3">
+              <User />
+              My Profile
             </Button>
-      </div>
+          </DialogTrigger>
 
-      
+          <DialogContent
+            className="p-0 w-full max-h-[80vh] overflow-y-auto
+             bg-white rounded-xl shadow-xl border border-indigo-100 scroll-hide"
+          >
+            <UserProfile />
+          </DialogContent>
+        </Dialog>
+      </div>
     </div>
   );
 }
