@@ -7,7 +7,7 @@ const UserInformation = z.object({
     contactNo: z.string().optional(),
     skills: z.string().optional(),
     experience: z.boolean().optional(),
-    experienceMonths: z.int().optional(),
+    experienceMonths: z.int().min(0, {message: "Please enter valid experience duration"}).optional(),
     jobsTargetting: z.string().optional(),
 })
 
