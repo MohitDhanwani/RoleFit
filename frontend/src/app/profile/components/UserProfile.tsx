@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { UserInformationSchema, UserInformationType } from "../schema/UserProfileForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUser } from "@clerk/nextjs";
+import axios from "axios"
 import { useEffect } from "react";
 
 export default function UserProfile() {
@@ -37,7 +38,12 @@ export default function UserProfile() {
 
   async function handleUserProfileCreation(values: UserInformationType) {
     try {
-      console.log("form submitted -> ", values);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/create`, values)
+      .then((res) => console.log(res))
+      .catch((e) => console.error("Error in sending request to create user"));
+
+      console.log("json", response);
+
     } catch (error) {
       console.error("Error", error);
     }
