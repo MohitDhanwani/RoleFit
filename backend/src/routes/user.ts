@@ -2,10 +2,9 @@ import { Router } from "express";
 import { prisma } from "../database/index.js";
 import { UserRoles } from "@prisma/client";
 import jwt from "jsonwebtoken";
+import { VerifyJWT } from "../middleware/UserAuthentication.js";
 import dotenv from "dotenv";
 dotenv.config();
-
-//verify the jwt token when user updates the profile
 
 const userRoute: Router = Router();
 
@@ -54,7 +53,7 @@ userRoute.post("/create-user", async (req, res) => {
       }
 
       //assign jwt token
-      const userToken = jwt.sign(userDataResponse.id, secretKey);
+      const userToken = jwt.sign({id: userDataResponse.id}, secretKey);
       res.cookie("UserToken", userToken);
       return res.status(201).json({message: "User created successfully", userToken});
     } else {
@@ -66,9 +65,9 @@ userRoute.post("/create-user", async (req, res) => {
   }
 });
 
-userRoute.post("/update-user", async (req, res) => {
+userRoute.post("/update-user", VerifyJWT, async (req, res) => {
   const userDataToUpdate : User = req.body;
-  
+
   try {
     const updatedUserResposne = await prisma.user.update({
       where:{
