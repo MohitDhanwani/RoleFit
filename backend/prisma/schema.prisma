@@ -19,7 +19,7 @@ enum UserRoles {
 }
 
 model User {
-  id                      Int              @id @default(autoincrement())
+  id                      String           @id @default(uuid())
   username                String
   emailAddress            String           @unique
   contactNumber           String?
@@ -28,7 +28,7 @@ model User {
   skills                  String[]         @default([])
   hasExperience           Boolean          @default(false)
   totalMonthsOfExperience Int?
-  prevJobTitle            String?
+  prevJobTitle            String[]          @default([])
   jobsTargetting          String[]         @default([])
   jobsAppliedTo           JobInformation[]
   createdAt               DateTime         @default(now())
