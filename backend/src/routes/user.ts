@@ -21,7 +21,7 @@ interface User {
   jobsTargetting?: string[];
 }
 
-userRoute.post("/create-user", async (req, res) => {
+userRoute.post("/create", async (req, res) => {
   const userdata : User = req.body;
 
   try {
@@ -65,7 +65,7 @@ userRoute.post("/create-user", async (req, res) => {
   }
 });
 
-userRoute.post("/update-user", VerifyJWT, async (req, res) => {
+userRoute.post("/update", VerifyJWT, async (req, res) => {
   const userDataToUpdate : User = req.body;
 
   try {
