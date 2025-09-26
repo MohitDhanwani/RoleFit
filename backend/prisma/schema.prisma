@@ -36,7 +36,7 @@ model User {
 }
 
 model JobInformation {
-  jobId        Int      @id @default(autoincrement())
+  jobId        String      @id @default(uuid())
   title        String
   description  String
   applyUrl     String
