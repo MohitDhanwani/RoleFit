@@ -28,6 +28,7 @@ export const VerifyAdmin = async (req: Request, res: Response, next: NextFunctio
         }
     })
     if(tokenVerificationResposne?.role == 'ADMIN'){
+        (req as any).userId = decodedAdminToken.id
         next();
     } else {
         return res.status(403).json({message: "User Unauthorized to access the requested route"});
