@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { Upload, Search, Percent, LucideIcon, User, Pointer } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import UserProfile from "./UserProfile";
 
 interface UserCycle {
   icon: LucideIcon;
@@ -57,9 +56,7 @@ export default function Hero() {
           <DialogContent
             className="p-0 w-full max-h-[80vh] overflow-y-auto
              bg-white rounded-xl shadow-xl border border-indigo-100 scroll-hide"
-          >
-            <UserProfile />
-          </DialogContent>
+          ></DialogContent>
         </Dialog>
       </div>
     </div>
