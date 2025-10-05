@@ -16,7 +16,7 @@ export const VerifyAdmin = async (req: Request, res: Response, next: NextFunctio
       return res.status(500).json({ message: "Secret Key is not configured" });
     }
 
-    const adminToken = req.cookies?.UserToken || req.headers["authorization"]?.split(" ")[1];
+    const adminToken : string = req.cookies?.UserToken || req.headers["authorization"]?.split(" ")[1];
     if (!adminToken) {
       return res.status(400).json({ message: "User is not authenticated" });
     }

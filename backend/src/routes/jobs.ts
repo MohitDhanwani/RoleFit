@@ -10,6 +10,35 @@ interface JobInformation {
   applyUrl: string;
 }
 
+jobsRoute.get("/allJobs", async (req , res) => {
+  try {
+    const allJobs = await prisma.jobInformation.findMany();
+    return res.status(200).json(allJobs);
+  } catch (error) {
+    console.error("Error in getting all jobs", error);
+    return res.status(500).json({message: "Error in getting all the jobs"});
+  }
+});
+
+jobsRoute.get("/:id", async (req ,res) => {
+  const requestedJobId = req.params.id;
+  if(!requestedJobId){
+    return res.status(400).json({message: "Something went wrong"});
+  }
+
+  try {
+    const requestedJob = await prisma.jobInformation.findUnique({
+      where: {
+        jobId: requestedJobId
+      }
+    })
+    return res.status(200).json(requestedJob);
+  } catch (error) {
+    console.error("Error in fetching requested job", error);
+    return res.status(500).json({mesage: "Error in fetching requested job"});
+  }
+})
+
 jobsRoute.post("/create", VerifyAdmin, async (req, res) => {
   const jobData: JobInformation = req.body;
   try {
