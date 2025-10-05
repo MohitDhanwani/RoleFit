@@ -1,7 +1,9 @@
+"use client";
 import { Zap } from "lucide-react";
-import { Button } from "./ui/button";
 import Link from "next/link";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { Button } from "./ui/button";
 
 interface NavigationItemsProps {
   name: string;
@@ -28,6 +30,16 @@ export default function Navbar() {
     },
   ];
 
+  const userSession = useSession();
+
+  const handleSignIn = async () => {
+    await signIn("google");
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
+
   return (
     <div>
       <div className="flex justify-evenly items-center h-16 top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-300">
@@ -47,13 +59,17 @@ export default function Navbar() {
         </div>
 
         <div className="flex gap-5 items-center">
-          <SignedOut>
-            <SignInButton forceRedirectUrl={"/profile"}/>
-          </SignedOut>
+          {userSession.data?.user && (
+            <Button onClick={handleSignOut} variant={"outline"}>
+              Sign out
+            </Button>
+          )}
 
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+          {!userSession.data?.user && (
+            <Button onClick={handleSignIn} variant={"outline"}>
+              Sign In
+            </Button>
+          )}
           <Button variant={"primary"}>Get Started</Button>
         </div>
       </div>
