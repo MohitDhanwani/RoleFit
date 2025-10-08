@@ -1,5 +1,5 @@
 "use client";
-import { Zap } from "lucide-react";
+import { UsersIcon, Zap } from "lucide-react";
 import Link from "next/link";
 import { signIn, signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
@@ -30,7 +30,7 @@ export default function Navbar() {
     },
   ];
 
-  const userSession = useSession();
+  const {data : session} = useSession();
 
   const handleSignIn = async () => {
     await signIn("google");
@@ -59,13 +59,13 @@ export default function Navbar() {
         </div>
 
         <div className="flex gap-5 items-center">
-          {userSession.data?.user && (
+          {session?.user && (
             <Button onClick={handleSignOut} variant={"outline"}>
               Sign out
             </Button>
           )}
 
-          {!userSession.data?.user && (
+          {!session?.user && (
             <Button onClick={handleSignIn} variant={"outline"}>
               Sign In
             </Button>
