@@ -37,7 +37,7 @@ const CardMetaData: Card[] = [
 
 export default function HowItWorks() {
   return (
-    <div className="bg-slate-50/50 max-w-full w-full flex flex-col justify-center items-center pt-28">
+    <div className="bg-slate-50/50 max-w-full w-full flex flex-col justify-center items-center pt-24">
       {/*Heading and description* */}
       <div className="max-w-3xl flex justify-center items-center flex-col">
         <div className="bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 rounded-full px-4 py-2 flex">
@@ -63,9 +63,9 @@ export default function HowItWorks() {
             <div key={index}>
               <Card
                 key={index}
-                className="bg-white-50 backdrop-blur-sm border border-white-50 max-w-60 h-96 flex flex-col items-center text-center p-4 shadow-sm border-none transform transition-all hover:-translate-y-2 duration-300 cursor-pointer"
+                className="bg-white-50 backdrop-blur-sm border border-white-50 max-w-60 h-96 flex flex-col items-center text-center p-4 shadow-sm border-none transform transition-all hover:-translate-y-2 duration-300 cursor-pointer hover:shadow-xl"
               >
-                <div className="w-8 h-8 rounded-full bg-white border-2 border-slate-200 font-bold text-slate-700 flex items-center justify-center -top-4 absolute">{index}</div>
+                <div className="w-8 h-8 rounded-full bg-white border-2 border-slate-200 font-bold text-slate-700 flex items-center justify-center -top-4 absolute">{index + 1}</div>
                 <div className="mt-8">
                   <Icon className={`p-4 shadow-lg rounded-xl bg-gradient-to-r ${card.iconColor}`} size={68} color="white" />
                 </div>
@@ -79,7 +79,7 @@ export default function HowItWorks() {
         })}
       </div>
 
-      <div className="pt-16">
+      <div className="pt-16 pb-8">
         <span className="text-slate-600 pr-2">
           Ready to get started? <span className="font-semibold text-indigo-600">Join 50,000+ job seekers</span>
         </span>
