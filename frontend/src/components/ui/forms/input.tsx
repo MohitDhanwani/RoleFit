@@ -3,7 +3,7 @@ import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessa
 import { Input } from "../input";
 
 type CustomInputProps<TFormValues extends Record<string, any>> = {
-  form: UseFormReturn<TFormValues>;
+  form?: UseFormReturn<TFormValues>;
   name: Path<TFormValues>;
   label?: string;
   description?: string;
@@ -29,7 +29,7 @@ export function FormInput<TFormValues extends Record<string, any>>({
   return (
     <div className={classname}>
       <FormField
-        control={form.control}
+        control={form?.control}
         name={name}
         render={({ field }) => (
           <FormItem>
