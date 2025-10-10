@@ -17,6 +17,10 @@ export default function Navbar() {
       url: "/",
     },
     {
+      name: "Profile",
+      url: "/profile",
+    },
+    {
       name: "Features",
       url: "/features",
     },
@@ -52,7 +56,7 @@ export default function Navbar() {
 
         <div className="flex justify-between gap-8">
           {navigationItems.map((item, index) => (
-            <Link href={item.url} key={index} className="text-sm font-semibold transition-colors hover:text-indigo-600 text-slate-700">
+            <Link href={item.url} key={index} className="text-sm font-bold transition-colors hover:text-indigo-600 text-slate-700">
               {item.name}
             </Link>
           ))}

@@ -26,7 +26,7 @@ export default function Step4() {
 
         {showResumeInfo && (
           <div>
-            <span className="text-xs relative -top-8 -left-7 border-slate-200 border-2 p-2 rounded-lg">Upload resume in pdf format only (max size 5 MB)</span>
+            <span className="text-xs relative -top-8 -left-7 border-slate-200 border-2 p-2 rounded-lg font-semibold">Upload resume in pdf format only (max size 5 MB)</span>
           </div>
         )}
       </div>
