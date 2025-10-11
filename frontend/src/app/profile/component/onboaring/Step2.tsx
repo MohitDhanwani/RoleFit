@@ -1,6 +1,15 @@
-import { FormInput, Input, Label } from "@/components/ui";
 import { ComboboxDemo } from "@/components/ui/combobox";
-import { Briefcase, MapPin } from "lucide-react";
+import { Briefcase } from "lucide-react";
+
+export interface UserPreferenceInfo {
+  skills: string[];
+  jobProfilesTargetting: string[];
+}
+
+interface Props {
+  data: UserPreferenceInfo;
+  setUserDetails: (details: Partial<UserPreferenceInfo>) => void;
+}
 
 const jobProfiles = [
   // --- Development & Engineering ---
@@ -47,29 +56,12 @@ const jobProfiles = [
   { value: "talent-acquisition", label: "Talent Acquisition Specialist" },
 ];
 
-const jobTypes = [
-  { value: "full-time", label: "Full-Time" },
-  { value: "part-time", label: "Part-Time" },
-  { value: "contract", label: "Contract" },
-  { value: "internship", label: "Internship" },
-  { value: "freelance", label: "Freelance" },
-];
-
-const availabilityOptions = [
-  { value: "immediate", label: "Immediate" },
-  { value: "within-2-weeks", label: "Within 2 Weeks" },
-  { value: "within-1-month", label: "Within 1 Month" },
-  { value: "flexible", label: "Flexible" },
-  { value: "negotiable", label: "Negotiable" },
-];
-
-
-export default function Step2() {
+export default function Step2({ data, setUserDetails }: Props) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 pt-16">
       <div className="flex gap-3">
         <div className="p-2 rounded-lg bg-indigo-100 flex justify-center items-center">
-          <Briefcase color="blue"/>
+          <Briefcase color="blue" />
         </div>
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Career Profile & Preferences</h1>
@@ -77,41 +69,29 @@ export default function Step2() {
         </div>
       </div>
 
-      <div className="w-full pt-4">
+      <div className="w-full pt-4 flex flex-col gap-4">
         <div>
           <h1 className="text-sm font-semibold text-slate-700 mb-2">Job Profiles You're Targetting</h1>
-          <ComboboxDemo data={jobProfiles}/>
-        </div>
-      </div>
-
-      <div>
-        <div className="flex gap-2">
-            <MapPin color="blue"/>
-            <h1 className="text-lg font-semibold text-slate-900">Job Preferences</h1>
-        </div>
-
-        <div className="flex w-full justify-between items-center gap-4 pt-4">
-          <div className="mb-3 flex flex-col gap-2 w-full">
-            <Label>Preferred Location</Label>
-            <Input name="Prefered Location" placeholder="Eg: London, India, USA, Dubai "/>
+          <ComboboxDemo
+            data={jobProfiles}
+            label="Select Job Profile"
+            placeholder="Select Job Profile..."
+            field="jobProfilesTargetting"
+            selectedValues={data.jobProfilesTargetting}
+            setUserDetails={setUserDetails}
+          />
         </div>
 
-        <div className="mb-3 flex flex-col gap-2 w-full">
-            <Label>Expected Salary Range</Label>
-            <ComboboxDemo data={jobProfiles}/>
-        </div>
-        </div>
-
-        <div className="flex w-full justify-between items-center gap-4 pt-4">
-          <div className="mb-3 flex flex-col gap-2 w-full">
-            <Label>Job Type</Label>
-            <ComboboxDemo data={jobProfiles}/>
-        </div>
-
-          <div className="mb-3 flex flex-col gap-2 w-full">
-            <Label>Availability</Label>
-            <ComboboxDemo data={jobProfiles}/>
-        </div>
+        <div>
+          <h1 className="text-sm font-semibold text-slate-700 mb-2">Skills</h1>
+          <ComboboxDemo
+            data={jobProfiles}
+            label="Select all the Skills"
+            placeholder="Select all the Skills..."
+            field="skills"
+            selectedValues={data.skills}
+            setUserDetails={setUserDetails}
+          />
         </div>
       </div>
     </div>

@@ -1,14 +1,18 @@
-import { FormInput, Input, Label } from "@/components/ui";
-import { DatePicker } from "@/components/ui/date-picker";
+import { Input, Label } from "@/components/ui";
 import { User } from "lucide-react";
 
-interface PersonalInfo {
+interface UserPersonalInfo {
   name: string;
   email: string;
-  contactNp: string;
+  contactNo: string;
 }
 
-export default function Step1() {
+interface Props {
+  data: UserPersonalInfo;
+  setUserDetails: (details: UserPersonalInfo) => void;
+}
+
+export default function Step1({ data, setUserDetails }: Props) {
   return (
     <div>
       <div className="flex gap-3">
@@ -20,35 +24,42 @@ export default function Step1() {
           <h3 className="text-slate-600">Let's start with your basic details</h3>
         </div>
       </div>
-    
+
       <form action="">
-        <div className="w-full flex flex-wrap pt-8">
-        
-        <div className="max-w-3xl w-full flex justify-between gap-16">
-          <div className="w-full max-w-xl">
-          <Label className="mb-2">Name</Label>
-          <Input name="Name" placeholder="Full name" />
-        </div>
+        <div className="w-full flex flex-wrap pt-8 gap-8">
+          <div className="w-[22vw]">
+            <Label className="mb-2">Name *</Label>
+            <Input
+              name="Name"
+              placeholder="Full name"
+              className="border-slate-300 border-2"
+              onChange={(e) => setUserDetails({ ...data, name: e.target.value })}
+              required
+            />
+          </div>
 
-        <div className="w-full max-w-xl">
-          <Label className="mb-2">Email</Label>
-          <Input name="Email" placeholder="Email Address" type="email" />
-        </div>
-        </div>
-
-       <div className="max-w-3xl w-full flex justify-between gap-16 pt-10">
-         <div className="w-full max-w-xl">
-          <Label className="mb-2">Contact Number</Label>
-          <Input name="Contact" placeholder="Contact Number" type="number" />
-        </div>
-
-        <div className="max-w-xl w-full">
-          <Label className="mb-2">Date Of Birth</Label>
-          <DatePicker />
-        </div>
-       </div>
-
-       
+          <div className="w-[22vw]">
+            <Label className="mb-2">Email *</Label>
+            <Input
+              name="Email"
+              placeholder="Email Address"
+              type="email"
+              className="border-slate-300 border-2"
+              onChange={(e) => setUserDetails({ ...data, email: e.target.value })}
+              required
+            />
+          </div>
+          <div className="w-[22vw]">
+            <Label className="mb-2">Contact Number *</Label>
+            <Input
+              name="Contact"
+              placeholder="Contact Number"
+              type="number"
+              className="border-slate-300 border-2"
+              onChange={(e) => setUserDetails({ ...data, contactNo: e.target.value })}
+              required
+            />
+          </div>
         </div>
       </form>
     </div>

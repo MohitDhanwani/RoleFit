@@ -1,3 +1,4 @@
+"use client"
 import { File, InfoIcon } from "lucide-react";
 import { Input } from "@/components/ui";
 import { useState } from "react";
@@ -14,7 +15,7 @@ export default function Step4() {
   };
 
   return (
-    <div className="pt-4">
+    <div className="pt-10">
       <div className="flex gap-3 items-center">
         <div className="bg-indigo-100 p-2 flex justify-center items-center rounded-lg">
           <File color="blue" />
